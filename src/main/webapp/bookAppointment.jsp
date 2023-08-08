@@ -17,7 +17,6 @@
 
     <input type="submit" value="Book Appointment">
 </form>
-
 <script>
     function fetchSlots() {
         let selectedDate = document.getElementById('date').value;
@@ -33,6 +32,7 @@
             });
         });
     }
+    document.getElementById('date').addEventListener('change', fetchSlots);
 </script>
 </body>
 </html>

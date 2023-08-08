@@ -2,6 +2,7 @@ package lk.gcc.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -12,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @WebServlet(name = "getAvailableSlots", value = "/getAvailableSlots")
-public class AvailableSlotsServlet {
+public class AvailableSlotsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Sample logic to get available slots for a particular date
         LocalDate date = LocalDate.parse(request.getParameter("date"));
@@ -35,6 +36,15 @@ public class AvailableSlotsServlet {
     private List<LocalTime> getAvailableSlotsForDate(LocalDate date) {
         // Logic to fetch available slots from the database
         // This is a dummy implementation
-        return Arrays.asList(LocalTime.of(10, 0), LocalTime.of(11, 0), LocalTime.of(14, 0));
+        return Arrays.asList(
+                LocalTime.of(8, 0),
+                LocalTime.of(9, 0),
+                LocalTime.of(10, 0),
+                LocalTime.of(11, 0),
+                LocalTime.of(13, 0),
+                LocalTime.of(14, 0),
+                LocalTime.of(15, 0),
+                LocalTime.of(16, 0)
+        );
     }
 }
