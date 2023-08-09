@@ -110,8 +110,11 @@
         <button type="submit">Register</button>
     </div>
 </form>
-
-
+<script>
+    <% if (request.getAttribute("error") != null) { %>
+    alert('<%= request.getAttribute("error") %>');
+    <% } %>
+</script>
 </body>
 </html>
 

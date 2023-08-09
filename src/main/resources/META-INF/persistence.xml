@@ -6,6 +6,7 @@
   <persistence-unit name="default">
 
     <class>lk.gcc.model.ConsultantEntity</class>
+    <class>lk.gcc.model.JobseekerEntity</class>
     <properties>
       <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gcc"/>
       <property name="jakarta.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

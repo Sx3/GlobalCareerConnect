@@ -12,7 +12,8 @@
 <a href="consultant_register.jsp">Consultant Register</a>
 <br/>
 <a href="bookAppointment.jsp">Book Appoinment</a>
-
+<br/>
+<a href="jobSeekerRegister.jsp">JOb sseker</a>
 
 <form action="<%= request.getContextPath() %>/getavailableslots" method="post">
 

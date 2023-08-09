@@ -34,8 +34,6 @@ public class AvailableSlotsServlet extends HttpServlet {
     }
 
     private List<LocalTime> getAvailableSlotsForDate(LocalDate date) {
-        // Logic to fetch available slots from the database
-        // This is a dummy implementation
         return Arrays.asList(
                 LocalTime.of(8, 0),
                 LocalTime.of(9, 0),
