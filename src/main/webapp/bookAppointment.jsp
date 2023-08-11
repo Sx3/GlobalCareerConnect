@@ -8,11 +8,11 @@
 <body>
 <h2>Book an Appointment</h2>
 
-<form action="${pageContext.request.contextPath}/bookAppointmentServlet" method="post">
+<form action="${pageContext.request.contextPath}/bookAppointment method="post">
     <label for="date">Select Date:</label>
-    <input type="date" id="date" name="date" onchange="fetchSlots()">
+    <input type="date" id="date" name="date" onchange="fetchSlots()"><br>
 
-    <label for="timeSlot">Available Time Slots:</label>
+    <label for="timeSlot">Available Time Slots:</label><br>
     <select id="timeSlot" name="timeSlot"></select>
 
     <input type="submit" value="Book Appointment">

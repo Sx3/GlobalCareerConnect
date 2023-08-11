@@ -15,7 +15,6 @@ import java.util.List;
 @WebServlet(name = "getAvailableSlots", value = "/getAvailableSlots")
 public class AvailableSlotsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Sample logic to get available slots for a particular date
         LocalDate date = LocalDate.parse(request.getParameter("date"));
         List<LocalTime> availableSlots = getAvailableSlotsForDate(date);
 

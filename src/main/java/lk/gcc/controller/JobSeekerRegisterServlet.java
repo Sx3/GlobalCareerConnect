@@ -50,6 +50,9 @@ public class JobSeekerRegisterServlet extends HttpServlet {
             entityManager.getTransaction().commit();
             entityManager.close();
             entityManagerFactory.close();
+
+            request.setAttribute("login", "You are sucessfully registered! now you can login.");
+            request.getRequestDispatcher("/jobSeekerLogin.jsp").forward(request, response);
         }catch (Exception e) {
             e.printStackTrace();
 
