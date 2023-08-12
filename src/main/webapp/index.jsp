@@ -47,7 +47,7 @@
   <img src="images/logo.jpg" alt="GCC Logo" style="width: 200px; margin-bottom: 20px;">
   <h2>Welcome to Global Career Connect</h2>
   <button onclick="location.href='${pageContext.request.contextPath}/consultantlogin.jsp'">Consultant Login</button>
-  <button onclick="location.href='${pageContext.request.contextPath}/jobSeekerLogin.jsp'">Job Seeker Login</button>
+  <button onclick="location.href='jobseekerlogin.jsp'">Job Seeker Login</button>
 </div>
 
 </body>

@@ -9,12 +9,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import lk.gcc.model.JobseekerEntity;
+import lk.gcc.model.ConsultantEntity;
 
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet(name = "jobSeekerLoginServlet", value = "/jobSeekerLoginServlet")
-public class jobSeekerLoginServlet extends HttpServlet {
+@WebServlet(name = "consultantLoginServlet", value = "/consultantLoginServlet")
+public class ConsultantLoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("uname");
         String password = request.getParameter("psw");
@@ -27,11 +28,11 @@ public class jobSeekerLoginServlet extends HttpServlet {
             session.setAttribute("username", username);
 
             // Redirect to the dashboard
-            response.sendRedirect(request.getContextPath() + "/jobseekerdashboard.jsp");
+            response.sendRedirect(request.getContextPath() + "/consultantdashboard.jsp");
         } else {
             // Redirect back to login page with an error message
             request.setAttribute("login", "Invalid credentials. Please try again.");
-            request.getRequestDispatcher("/jobseekerlogin.jsp").forward(request, response);
+            request.getRequestDispatcher("/consultantlogin.jsp").forward(request, response);
         }
     }
 
@@ -39,14 +40,14 @@ public class jobSeekerLoginServlet extends HttpServlet {
         try {
             EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
             EntityManager entityManager = entityManagerFactory.createEntityManager();
-            JobseekerEntity seeker = entityManager.createQuery("SELECT e FROM JobseekerEntity e WHERE e.username = :username AND e.password = :password", JobseekerEntity.class)
+            List<ConsultantEntity> consultant = entityManager.createQuery("SELECT e FROM ConsultantEntity e WHERE e.uname = :username AND e.psw = :password", ConsultantEntity.class)
                     .setParameter("username", username)
                     .setParameter("password", password)
-                    .getSingleResult();
+                    .getResultList();
             entityManager.close();
             entityManagerFactory.close();
 
-            if (seeker != null) {
+            if (consultant != null) {
                 return true;
             }
         } catch (Exception e) {

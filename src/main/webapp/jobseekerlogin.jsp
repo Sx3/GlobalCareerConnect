@@ -57,7 +57,8 @@
     </style>
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/jobSeekerLoginServlet" method="post">
+<form action="<%= request.getContextPath() %>/jobSeekerLoginServlet" method="post">
+<div class="container">
     <img src="images/user_login.png" alt="Login Icon" class="login-icon">
     <h2>Job Seeker Login</h2>
     <label for="uname"><b>Username</b></label>
@@ -67,6 +68,7 @@
     <input type="password" placeholder="Enter Password" name="psw" required>
 
     <button type="submit">Login</button>
+</div>
 </form>
 <script>
     <% if (request.getAttribute("login") != null) { %>

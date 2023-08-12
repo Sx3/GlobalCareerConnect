@@ -57,6 +57,7 @@
     </style>
 </head>
 <body>
+<form action="<%= request.getContextPath() %>/consultantLoginServlet" method="post">
 <div class="container">
     <img src="images/admin_login.png" alt="Login Icon" class="login-icon">
     <h2>Consultant Login</h2>
@@ -68,6 +69,7 @@
 
     <button type="submit">Login</button>
 </div>
+</form>
 <script>
     <% if (request.getAttribute("login") != null) { %>
     alert('<%= request.getAttribute("login") %>');
