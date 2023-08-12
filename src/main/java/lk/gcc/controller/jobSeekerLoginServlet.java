@@ -15,6 +15,8 @@ import java.io.IOException;
 
 @WebServlet(name = "jobSeekerLoginServlet", value = "/jobSeekerLoginServlet")
 public class jobSeekerLoginServlet extends HttpServlet {
+    private String fName;
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("uname");
         String password = request.getParameter("psw");
@@ -25,6 +27,7 @@ public class jobSeekerLoginServlet extends HttpServlet {
             // Store user data in session
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
+            session.setAttribute("fname", fName);
 
             // Redirect to the dashboard
             response.sendRedirect(request.getContextPath() + "/jobseekerdashboard.jsp");
@@ -47,11 +50,14 @@ public class jobSeekerLoginServlet extends HttpServlet {
             entityManagerFactory.close();
 
             if (seeker != null) {
+                fName = seeker.getFullName();
                 return true;
             }
         } catch (Exception e) {
+            fName = null;
             e.printStackTrace();
         }
+        fName = null;
         return false;
     }
 }

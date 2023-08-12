@@ -81,11 +81,13 @@
 
         <label for="spec_country"><b>Specialized Country</b></label>
         <select name="spec_country" required>
-            <option value="">Select Country</option>
-            <option value="Australia">Australia</option>
+            <option value="UK">UK</option>
+            <option value="USA">USA</option>
             <option value="Canada">Canada</option>
-            <option value="United States">United States</option>
-            <!-- Add more options as needed -->
+            <option value="New Zealand">New Zealand</option>
+            <option value="Australia">Australia</option>
+            <option value="Finland">Finland</option>
+            <option value="Sweden">Sweden</option>
         </select>
 
         <label for="job_type"><b>Specialized Job Type</b></label>
@@ -93,8 +95,9 @@
             <option value="">Select Job Type</option>
             <option value="IT">IT</option>
             <option value="Engineering">Engineering</option>
+            <option value="Construction">Construction</option>
             <option value="Finance">Finance</option>
-            <!-- Add more options as needed -->
+            <option value="Health Care">Health Care</option>
         </select>
 
         <label for="uname"><b>Username</b></label>
