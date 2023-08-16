@@ -42,9 +42,6 @@ public class GetConsultantAppoinmentsServlet extends HttpServlet {
         response.setContentType("application/json");
         Gson gson = new Gson();
         String json = gson.toJson(mappedData);
-
-        System.out.println(json);
-
         response.getWriter().write(json);
     }
     private List<Tuple> fetchAppointmentsForConsultant(int consultantId) {

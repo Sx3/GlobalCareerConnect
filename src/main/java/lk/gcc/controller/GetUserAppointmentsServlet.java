@@ -25,10 +25,14 @@ public class GetUserAppointmentsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Retrieve user's ID from session or any other means
-        int userId = (Integer) request.getSession().getAttribute("jobSeekerId");
+        Object object = request.getSession().getAttribute("jobSeekerId");
 
-        // Fetch appointments for the user
-        List<Tuple> tuples = fetchAppointmentsForUser(userId);
+        List<Tuple> tuples;
+        if(object!=null) {
+            tuples = fetchAppointmentsForUser((Integer) object);
+        }else{
+            tuples = fetchAppointmentsForUser(-999);
+        }
 
         List<Map<String, Object>> mappedData = tuples.stream().map(tuple -> {
             Map<String, Object> map = new HashMap<>();
@@ -57,14 +61,24 @@ public class GetUserAppointmentsServlet extends HttpServlet {
             EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
             EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-            result = entityManager.createQuery(
-                            "SELECT a as appointment, c.fname as fname, c.email as email,c.phone as phone, c.specCountry as specCountry,c.jobType as jobType " +
-                                    "FROM AppointmentEntity a " +
-                                    "INNER JOIN ConsultantEntity c " +
-                                    "ON a.consultantId = c.id WHERE a.jobseekerId = :userId",
-                            Tuple.class)
-                    .setParameter("userId", userId)
-                    .getResultList();
+            if (userId == -999) {
+                result = entityManager.createQuery(
+                                "SELECT a as appointment, c.fname as fname, c.email as email,c.phone as phone, c.specCountry as specCountry,c.jobType as jobType " +
+                                        "FROM AppointmentEntity a " +
+                                        "INNER JOIN ConsultantEntity c " +
+                                        "ON a.consultantId = c.id order by a.appointmentDate",
+                                Tuple.class)
+                        .getResultList();
+            } else {
+                result = entityManager.createQuery(
+                                "SELECT a as appointment, c.fname as fname, c.email as email,c.phone as phone, c.specCountry as specCountry,c.jobType as jobType " +
+                                        "FROM AppointmentEntity a " +
+                                        "INNER JOIN ConsultantEntity c " +
+                                        "ON a.consultantId = c.id WHERE a.jobseekerId = :userId order by a.appointmentDate",
+                                Tuple.class)
+                        .setParameter("userId", userId)
+                        .getResultList();
+            }
             entityManager.close();
             entityManagerFactory.close();
         } catch (Exception e) {

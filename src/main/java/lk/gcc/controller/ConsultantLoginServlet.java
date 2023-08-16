@@ -17,6 +17,7 @@ import java.io.IOException;
 public class ConsultantLoginServlet extends HttpServlet {
     private String fName;
     private int consultantID;
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("uname");
         String password = request.getParameter("psw");
@@ -29,9 +30,12 @@ public class ConsultantLoginServlet extends HttpServlet {
             session.setAttribute("username", username);
             session.setAttribute("fname", fName);
             session.setAttribute("consultantID", consultantID);
-
-            // Redirect to the dashboard
-            response.sendRedirect(request.getContextPath() + "/consultantdashboard.jsp");
+            if (username.equals("admin")) {
+                response.sendRedirect(request.getContextPath() + "/admindashboard.jsp");
+            } else {
+                // Redirect to the dashboard
+                response.sendRedirect(request.getContextPath() + "/consultantdashboard.jsp");
+            }
         } else {
             // Redirect back to login page with an error message
             request.setAttribute("login", "Invalid credentials. Please try again.");
