@@ -57,9 +57,9 @@ public class GetConsultantAppoinmentsServlet extends HttpServlet {
                             "SELECT a as appointment, j.fullName as fullName, j.email as email,j.phone as phone " +
                                     "FROM AppointmentEntity a " +
                                     "INNER JOIN JobseekerEntity j " +
-                                    "ON a.consultantId = j.id WHERE a.consultantId = :consultantId",
+                                    "ON a.jobseekerId = j.id WHERE a.consultantId = :consultantID",
                             Tuple.class)
-                    .setParameter("consultantId", consultantId)
+                    .setParameter("consultantID",consultantId)
                     .getResultList();
             entityManager.close();
             entityManagerFactory.close();
