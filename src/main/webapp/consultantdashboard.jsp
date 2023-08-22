@@ -104,17 +104,22 @@
 <table border="1">
     <thead>
     <tr>
+        <th></th>
         <th>Date</th>
         <th>Time Slot</th>
         <th>JobSeeker Name</th>
         <th>Email</th>
         <th>Phone</th>
+        <th>Status</th>
         <th>Note</th>
     </tr>
     </thead>
     <tbody id="appointmentsTable">
     </tbody>
 </table>
+
+<button id="closeAppointmentBtn">Close Appointment</button> <!-- Close appointment button -->
+
 <script>
     function fetchAppointments() {
         // Assume there's an endpoint that fetches appointments for the current user
@@ -124,22 +129,53 @@
 
             data.forEach(appointments => {
                 let row = tableBody.insertRow();
-                let cell1 = row.insertCell(0);
-                let cell2 = row.insertCell(1);
-                let cell3 = row.insertCell(2);
-                let cell4 = row.insertCell(3);
-                let cell5 = row.insertCell(4);
-                let cell6 = row.insertCell(5);
+                let cell0 = row.insertCell(0);
+                let cell1 = row.insertCell(1);
+                let cell2 = row.insertCell(2);
+                let cell3 = row.insertCell(3);
+                let cell4 = row.insertCell(4);
+                let cell5 = row.insertCell(5);
+                let cell6 = row.insertCell(6);
+                let cell7 = row.insertCell(7);
 
+                cell0.innerHTML = '<input type="radio" name="selectedAppointment" value="' + appointments.appointment.appointmentId + '">';
                 cell1.innerHTML = appointments.appointment.appointmentDate;
                 cell2.innerHTML = appointments.appointment.appointmentTime;
                 cell3.innerHTML = appointments.fullName;
                 cell4.innerHTML = appointments.email;
                 cell5.innerHTML = appointments.phone;
-                cell6.innerHTML = appointments.appointment.notes ? appointments.appointment.notes : 'N/A';
+                cell6.innerHTML = appointments.appointment.status;
+                cell7.innerHTML = appointments.appointment.notes ? appointments.appointment.notes : 'N/A';
             });
         });
     }
+
+    document.getElementById('closeAppointmentBtn').addEventListener('click', function() {
+        let selectedAppointment = document.querySelector('input[name="selectedAppointment"]:checked');
+        if (selectedAppointment) {
+            let confirmation = confirm("Are you sure you want to mark this appoinment as Closed?");
+            if (confirmation) {
+                let appointmentId = selectedAppointment.value;
+
+                $.ajax({
+                    url: "${pageContext.request.contextPath}/closeAppointment",
+                    type: "POST",
+                    data: {appointmentId: appointmentId},
+                    success: function(response) {
+                        if(response === 'success') {
+                            alert('Appointment closed successfully!');
+                            fetchAppointments();  // Refresh the list
+                        } else {
+                            alert('Failed to close the appointment.');
+                        }
+                    }
+                });
+            }
+
+        } else {
+            alert('Please select an appointment to close.');
+        }
+    });
 
     // Fetch appointments when the page loads
     window.onload = fetchAppointments;

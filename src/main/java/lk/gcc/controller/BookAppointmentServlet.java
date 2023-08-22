@@ -38,6 +38,7 @@ public class BookAppointmentServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
         appointmentEntity.setNotes(notes);
+        appointmentEntity.setStatus("Open");
 
 
         try {

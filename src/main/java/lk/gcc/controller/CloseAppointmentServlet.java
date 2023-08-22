@@ -12,19 +12,19 @@ import lk.gcc.model.AppointmentEntity;
 
 import java.io.IOException;
 
-@WebServlet(name = "deleteAppointmentServlet", value = "/deleteAppointmentServlet")
-public class DeleteAppointmentServlet extends HttpServlet {
+@WebServlet(name = "closeAppointment", value = "/closeAppointment")
+public class CloseAppointmentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String appointmentId = request.getParameter("appointmentId");
 
-        if (deleteAppointment(appointmentId)) {
+        if (closeTheAppoinment(appointmentId)) {
             response.getWriter().write("success");
         } else {
             response.getWriter().write("error");
         }
     }
 
-    private boolean deleteAppointment(String appointmentId) {
+    private boolean closeTheAppoinment(String appointmentId) {
         try {
             EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
             EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -32,7 +32,7 @@ public class DeleteAppointmentServlet extends HttpServlet {
             entityManager.getTransaction().begin();
             AppointmentEntity appointment = entityManager.find(AppointmentEntity.class, Long.valueOf(appointmentId));
             if (appointment != null) {
-                entityManager.remove(appointment);
+                appointment.setStatus("Closed");
                 entityManager.getTransaction().commit();
                 return true;
             }
@@ -41,6 +41,7 @@ public class DeleteAppointmentServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return false;
     }
 }
