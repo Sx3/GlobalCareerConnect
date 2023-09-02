@@ -48,6 +48,13 @@
         button:hover {
             opacity: 0.8;
         }
+
+        .login-icon {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
     </style>
 </head>
 <body>
@@ -55,6 +62,7 @@
     <h2>Job Seeker Registration</h2>
 
     <form action="${pageContext.request.contextPath}/jobSeekerRegister" method="post">
+        <img src="images/register.png" alt="Login Icon" class="login-icon">
         <label for="fullName">Full Name:</label>
         <input type="text" id="fullName" name="fullName" required>
 

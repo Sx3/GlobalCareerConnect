@@ -51,11 +51,11 @@
         button, input[type=submit] {
             background-color: #4CAF50;
             color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
+            padding: 10px 20px;  /* Adjust padding */
+            margin: 10px 0;  /* Adjust margin */
             border: none;
             cursor: pointer;
-            width: 100%;
+            width: auto;  /* Reset the width */
         }
 
         button:hover, input[type=submit]:hover {
@@ -115,10 +115,21 @@
         .summary-item {
             margin-bottom: 5px;
         }
+
+        .content-wrapper {
+            width: 80%;  /* Change this according to your preference */
+            margin: 0 auto;  /* Center the container */
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
+
     </style>
 </head>
 <body>
+<div class="content-wrapper">
 <h3>All Appointments</h3>
+<button id="deleteAppointment " onclick="deleteAppointment()">Delete Selected Appointment</button>
 <table border="1">
     <thead>
     <tr>
@@ -128,7 +139,7 @@
         <th>Consultant Name</th>
         <th>Email</th>
         <th>Phone</th>
-        <th>Specialization Country</th>
+        <th>Specialized Country</th>
         <th>Job Type</th>
         <th>Note</th>
     </tr>
@@ -138,7 +149,7 @@
 </table>
 
 <div id="summaryDiv"></div>
-<button id="deleteAppointment " onclick="deleteAppointment()">Delete Selected Appointment</button>
+
 <script>
     function aggregateData(data) {
         let countryCounts = {};
@@ -234,5 +245,7 @@
     window.onload = fetchAppointments;
 </script>
 <a href="${pageContext.request.contextPath}/logoutServlet">Logout</a>
+<a href="${pageContext.request.contextPath}/consultant_register.jsp">Register New Consultant</a>
+</div>
 </body>
 </html>

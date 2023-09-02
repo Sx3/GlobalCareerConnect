@@ -48,6 +48,7 @@
   <h2>Welcome to Global Career Connect</h2>
   <button onclick="location.href='${pageContext.request.contextPath}/consultantlogin.jsp'">Consultant Login</button>
   <button onclick="location.href='jobseekerlogin.jsp'">Job Seeker Login</button>
+  <button onclick="location.href='jobSeekerRegister.jsp'">Looking for Registration</button>
 </div>
 
 </body>

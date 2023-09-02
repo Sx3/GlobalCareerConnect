@@ -51,11 +51,11 @@
         button, input[type=submit] {
             background-color: #4CAF50;
             color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
+            padding: 10px 20px;  /* Adjust padding */
+            margin: 10px 0;  /* Adjust margin */
             border: none;
             cursor: pointer;
-            width: 100%;
+            width: auto;  /* Reset the width */
         }
 
         button:hover, input[type=submit]:hover {
@@ -96,11 +96,22 @@
         a:hover {
             background-color: #0056b3;
         }
+
+        .content-wrapper {
+            width: 80%;  /* Change this according to your preference */
+            margin: 0 auto;  /* Center the container */
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
+
     </style>
 </head>
 <body>
+<div class="content-wrapper">
 <h2>Welcome <%= session.getAttribute("fname") %>!</h2>
 <h3>Your Appointments</h3>
+    <button id="closeAppointmentBtn">Close Appointment</button> <!-- Close appointment button -->
 <table border="1">
     <thead>
     <tr>
@@ -117,8 +128,6 @@
     <tbody id="appointmentsTable">
     </tbody>
 </table>
-
-<button id="closeAppointmentBtn">Close Appointment</button> <!-- Close appointment button -->
 
 <script>
     function fetchAppointments() {
@@ -181,5 +190,6 @@
     window.onload = fetchAppointments;
 </script>
 <a href="${pageContext.request.contextPath}/logoutServlet">Logout</a>
+</div>
 </body>
 </html>

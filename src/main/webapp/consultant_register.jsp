@@ -63,10 +63,10 @@
             border: 1px solid #ccc;
             box-sizing: border-box;
         }
+
     </style>
 </head>
 <body>
-
 <form action="<%= request.getContextPath() %>/consultantregister" method="post">
     <div class="container">
         <img src="images/register.png" alt="Login Icon" class="login-icon">
