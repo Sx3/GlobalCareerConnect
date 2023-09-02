@@ -52,13 +52,17 @@ public class JobSeekerRegisterServlet extends HttpServlet {
             entityManagerFactory.close();
 
             request.setAttribute("login", "You are sucessfully registered! now you can login.");
-            request.getRequestDispatcher("/jobseekerlogin.jsp").forward(request, response);
+            //request.getRequestDispatcher("/jobseekerlogin.jsp").forward(request, response);
+
+            response.sendRedirect("jobseekerlogin.jsp");
+
         }catch (Exception e) {
             e.printStackTrace();
 
             // Handle the exception, maybe redirect to an error page or show an error message
             request.setAttribute("error", "There was an error during registration.");
-            request.getRequestDispatcher("/jobSeekerRegister.jsp").forward(request, response);
+            //request.getRequestDispatcher("/jobSeekerRegister.jsp").forward(request, response);
+            response.sendRedirect("jobSeekerRegister.jsp");
         }
     }
 

@@ -96,9 +96,19 @@
         a:hover {
             background-color: #0056b3;
         }
+
+        .content-wrapper {
+            width: 80%;  /* Change this according to your preference */
+            margin: 0 auto;  /* Center the container */
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
+
     </style>
 </head>
 <body>
+<div class="content-wrapper">
 <h2>Welcome <%= session.getAttribute("fname") %>!</h2>
 <h3>Book Appointments</h3>
 <form action="${pageContext.request.contextPath}/bookAppointmentServlet" method="post" onsubmit="return validateForm()">
@@ -252,5 +262,6 @@
     <% } %>
 </script>
 <a href="${pageContext.request.contextPath}/logoutServlet">Logout</a>
+</div>
 </body>
 </html>

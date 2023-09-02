@@ -62,6 +62,7 @@ public class ConsultantRegisterServlet extends HttpServlet {
 
             entityManager.close();
             entityManagerFactory.close();
+
         } catch (Exception e) {
             e.printStackTrace();
 
