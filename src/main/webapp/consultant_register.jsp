@@ -69,6 +69,7 @@
 <body>
 <form action="<%= request.getContextPath() %>/consultantregister" method="post">
     <div class="container">
+        <h2>Consultant Registration</h2>
         <img src="images/register.png" alt="Login Icon" class="login-icon">
         <label for="fname"><b>Full Name</b></label>
         <input type="text" placeholder="Enter Full Name" name="fname" required>
