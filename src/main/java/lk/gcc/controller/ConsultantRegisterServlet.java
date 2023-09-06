@@ -63,6 +63,9 @@ public class ConsultantRegisterServlet extends HttpServlet {
             entityManager.close();
             entityManagerFactory.close();
 
+            request.setAttribute("login", "You are sucessfully registered! now you can login.");
+            response.sendRedirect("consultantlogin.jsp");
+
         } catch (Exception e) {
             e.printStackTrace();
 
